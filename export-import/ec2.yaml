@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EC2 autoscaling instance
+Description: EC2 autoscaling instance (export/import)
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -46,7 +46,9 @@ Resources:
       LaunchConfigurationName: !Ref myLaunchConfig
       MaxSize: 1
       MinSize: 1
-      VPCZoneIdentifier: Fn::ImportValue: !Sub '${VpcStack}-PubSubnets'
+      VPCZoneIdentifier: !Split
+        - ','
+        - Fn::ImportValue: !Sub '${VpcStack}-PubSubnets'
       Tags: 
         - Key: Name
           Value: !Ref AWS::StackName
