@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EC2 autoscaling instance
+Description: EC2 autoscaling instance (manual)
 
 Metadata:
   AWS::CloudFormation::Interface:
