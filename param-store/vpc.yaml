@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Simple VPC network
+Description: Simple VPC network (param-store)
 
 Metadata:
   AWS::CloudFormation::Interface:
