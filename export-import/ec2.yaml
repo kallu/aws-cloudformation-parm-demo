@@ -48,7 +48,8 @@ Resources:
       MinSize: 1
       VPCZoneIdentifier: !Split
         - ','
-        - Fn::ImportValue: !Sub '${VpcStack}-PubSubnets'
+        - Fn::ImportValue:
+            !Sub '${VpcStack}-PubSubnets'
       Tags: 
         - Key: Name
           Value: !Ref AWS::StackName
@@ -57,8 +58,10 @@ Resources:
   mySecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: !Sub Security group for ${AWS::StackName} 
-      VpcId: Fn::ImportValue: !Sub '${VpcStack}-VpcId'
+      GroupDescription: !Sub 'Security group for ${AWS::StackName}'
+      VpcId:
+        Fn::ImportValue:
+          !Sub '${VpcStack}-VpcId'
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
