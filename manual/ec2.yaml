@@ -27,11 +27,11 @@ Parameters:
   AmiId:
       Description: AMI ID
       Type: String
-      Default: ami-12345678
+      Default: ami-00035f41c82244dab
   InstanceType:
       Description: EC2 Instance Type
       Type: String
-      Default: t2-small
+      Default: t2.nano
 
 Resources:
 
@@ -50,8 +50,7 @@ Resources:
       LaunchConfigurationName: !Ref myLaunchConfig
       MaxSize: 1
       MinSize: 1
-      VPCZoneIdentifier: 
-        - !Ref VpcId
+      VPCZoneIdentifier: !Ref Subnets
       Tags: 
         - Key: Name
           Value: !Ref AWS::StackName
@@ -65,5 +64,3 @@ Resources:
       Tags:
         - Key: Name
           Value: !Ref AWS::StackName
-
-Outputs:
