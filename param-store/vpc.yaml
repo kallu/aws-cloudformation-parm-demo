@@ -166,7 +166,7 @@ Resources:
     Properties:
       Name: !Sub '/cloudformation/${AWS::StackName}/pubsubnets'
       Description: !Sub '${AWS::StackName} public subnets'
-      Type: 'StringList'
+      Type: 'String'
       Value: !Sub
         - '${subnetA},${subnetB},${subnetC}'
         - { subnetA: !If [ PubA, !Ref PubSubnetA, "" ], subnetB: !If [ PubB, !Ref PubSubnetB, "" ], subnetC: !If [ PubC, !Ref PubSubnetC, "" ] }

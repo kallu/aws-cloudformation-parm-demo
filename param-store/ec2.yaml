@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: EC2 autoscaling instance
+Description: EC2 autoscaling instance (param-store)
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -19,11 +19,13 @@ Metadata:
 
 Parameters: 
   VpcId:
-      Description: VPC ID 
-      Type: AWS::EC2::VPC::Id
+    Description: VPC ID 
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::VPC::Id>
+    Default: /cloudformation/sample-vpc/vpcid
   Subnets:
     Description: Subnets
-    Type: List<AWS::EC2::Subnet::Id>
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cloudformation/sample-vpc/pubsubnets
   AmiId:
       Description: AMI ID
       Type: String
@@ -50,7 +52,9 @@ Resources:
       LaunchConfigurationName: !Ref myLaunchConfig
       MaxSize: 1
       MinSize: 1
-      VPCZoneIdentifier: !Ref Subnets
+      VPCZoneIdentifier: !Split
+        - ','
+        - !Ref Subnets
       Tags: 
         - Key: Name
           Value: !Ref AWS::StackName
