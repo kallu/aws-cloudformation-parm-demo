@@ -13,8 +13,17 @@ Metadata:
           - PubCidrA
           - PubCidrB
           - PubCidrC
+      -
+        Label:
+          default: EC configuration
+        Parameters:
+          - Ec2Template
 
 Parameters:
+  Ec2Template:
+    Type: String
+    Description: EC2 template URL
+    Default: 'https://s3-eu-west-1.amazonaws.com/cfn-templates-430997289407/ec2.yaml'
   VpcCidr:
     Type: String
     Description: VPC
@@ -43,6 +52,16 @@ Conditions:
   PubAny: !Or [ Condition: PubA, Condition: PubB, Condition: PubC ]
 
 Resources:
+
+  EC2:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        VpcId: !Ref VPC
+        Subnets: !Sub
+          - '${subnetA},${subnetB},${subnetC}'
+          - { subnetA: !If [ PubA, !Ref PubSubnetA, "" ], subnetB: !If [ PubB, !Ref PubSubnetB, "" ], subnetC: !If [ PubC, !Ref PubSubnetC, "" ] }
+      TemplateURL: !Ref Ec2Template
 
   VPC:
     Type: AWS::EC2::VPC
