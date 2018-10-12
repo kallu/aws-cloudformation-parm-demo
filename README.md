@@ -11,3 +11,7 @@ https://aws.amazon.com/blogs/aws/aws-cloudformation-update-yaml-cross-stack-refe
 1. SSM parameter store<br>
 https://aws.amazon.com/blogs/mt/integrating-aws-cloudformation-with-aws-systems-manager-parameter-store/<br>
 https://aws.amazon.com/blogs/mt/using-aws-systems-manager-parameter-store-secure-string-parameters-in-aws-cloudformation-templates/
+
+1. Stack sets<br>
+https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html
+
