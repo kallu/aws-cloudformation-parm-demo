@@ -15,3 +15,7 @@ https://aws.amazon.com/blogs/mt/using-aws-systems-manager-parameter-store-secure
 1. Stack sets<br>
 https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html
 
+1. AWS CDK<br>
+https://aws.amazon.com/blogs/developer/aws-cdk-developer-preview/
+
+
